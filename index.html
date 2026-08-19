@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Oyindamola Olaosun — Portfolio</title>
+<meta name="description" content="Oyindamola Olaosun — Software Development student, builder, and lifelong learner." />
+
+<!-- Fonts: DM Sans for display, Inter for body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,500;9..40,700;9..40,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.15.1/devicon.min.css">
+
+<!-- Animate On Scroll -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root{
+    --bg: #FAF9FC;
+    --surface: #FFFFFF;
+    --surface-alt: #F1EEFA;
+    --ink: #1C1730;
+    --ink-soft: #6B647F;
+    --primary: #5B4FE5;
+    --primary-dark: #453BC4;
+    --primary-light: #EDEBFC;
+    --accent: #F2A65A;
+    --accent-dark: #DD8B37;
+    --track: #E3DFF7;
+    --line: #E7E3F3;
+    --radius: 18px;
+    --shadow: 0 10px 30px -12px rgba(28,23,48,0.18);
+    --maxw: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,.display{
+    font-family:'DM Sans',sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{padding:110px 24px; scroll-margin-top:84px;}
+  .wrap{max-width:var(--maxw); margin:0 auto;}
+  .eyebrow{
+    font-family:'DM Sans',sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.75rem;
+    color:var(--primary);
+    display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--accent); display:inline-block;}
+  .section-title{font-size:clamp(1.8rem,3.2vw,2.6rem); font-weight:800; margin-top:14px; max-width:720px;}
+  .section-sub{color:var(--ink-soft); max-width:560px; margin-top:14px; font-size:1.02rem;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:13px 24px; border-radius:100px; font-weight:600; font-size:0.95rem;
+    cursor:pointer; border:1px solid transparent; transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn-primary{background:var(--ink); color:#fff;}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:#fff; transform:translateY(-2px);}
+  .btn-ghost{color:var(--primary); padding:10px 4px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--surface-alt); color:var(--primary-dark);
+    padding:6px 13px; border-radius:100px; font-size:0.78rem; font-weight:600;
+  }
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(250,249,252,0.82); backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{font-family:'DM Sans',sans-serif; font-weight:800; font-size:1.05rem;}
+  .brand span{color:var(--primary);}
+  .nav-links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  .nav-links a{font-size:0.9rem; font-weight:600; color:var(--ink-soft); transition:color .15s;}
+  .nav-links a:hover{color:var(--primary);}
+  .nav-cta{display:flex; gap:12px; align-items:center;}
+  .nav-toggle{display:none; background:none; border:none; font-size:1.3rem; cursor:pointer; color:var(--ink);}
+
+  @media (max-width:900px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0; background:var(--surface);
+      flex-direction:column; padding:20px 24px; gap:18px; border-bottom:1px solid var(--line);
+      transform:translateY(-130%); transition:transform .25s ease; box-shadow:var(--shadow);
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-cta .btn-outline{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:170px 24px 90px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+    max-width:var(--maxw); margin:0 auto;
+  }
+  .hero-kicker{color:var(--primary); font-weight:700; font-family:'DM Sans',sans-serif; letter-spacing:0.08em; text-transform:uppercase; font-size:0.8rem;}
+  .hero h1{font-size:clamp(2.4rem,4.4vw,3.6rem); font-weight:800; margin-top:14px; line-height:1.08;}
+  .hero h1 em{font-style:normal; color:var(--primary);}
+  .hero p.lead{margin-top:20px; font-size:1.08rem; color:var(--ink-soft); max-width:520px;}
+  .hero-actions{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .hero-meta{display:flex; gap:26px; margin-top:44px; flex-wrap:wrap;}
+  .hero-meta .item .num{font-family:'DM Sans',sans-serif; font-weight:800; font-size:1.5rem; color:var(--ink);}
+  .hero-meta .item .lbl{font-size:0.8rem; color:var(--ink-soft);}
+
+  .hero-portrait{position:relative; justify-self:center;}
+  .avatar-ring{
+    width:300px; height:300px; border-radius:50%;
+    background:linear-gradient(150deg, var(--primary), var(--accent));
+    display:flex; align-items:center; justify-content:center;
+    position:relative; box-shadow:var(--shadow);
+  }
+  .avatar-inner{
+    width:270px; height:270px; border-radius:50%; background:var(--surface-alt);
+    display:flex; align-items:center; justify-content:center; overflow:hidden;
+  }
+  .avatar-inner .mono{font-family:'DM Sans',sans-serif; font-size:5rem; font-weight:800; color:var(--primary);}
+  /* Replace .avatar-inner content with <img src="your-photo.jpg" alt="Oyindamola Olaosun"> */
+  .float-badge{
+    position:absolute; background:var(--surface); border-radius:14px; padding:10px 14px;
+    box-shadow:var(--shadow); display:flex; align-items:center; gap:8px; font-size:0.82rem; font-weight:600;
+  }
+  .float-badge i{color:var(--accent);}
+  .fb1{top:6px; left:-30px;}
+  .fb2{bottom:18px; right:-36px;}
+
+  /* Education + GPA card under hero */
+  .hero-lower{max-width:var(--maxw); margin:0 auto; padding:0 24px 40px;}
+  .info-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:22px;}
+  .card{background:var(--surface); border-radius:var(--radius); padding:28px; box-shadow:var(--shadow); border:1px solid var(--line);}
+  .edu-row{display:flex; justify-content:space-between; gap:14px; padding:14px 0; border-bottom:1px solid var(--line);}
+  .edu-row:last-child{border-bottom:none;}
+  .edu-row .school{font-weight:700;}
+  .edu-row .deg{color:var(--ink-soft); font-size:0.9rem; margin-top:2px;}
+  .edu-row .when{font-size:0.8rem; color:var(--ink-soft); white-space:nowrap;}
+
+  .gpa-title{font-weight:700; margin-bottom:16px;}
+  .gpa-row{display:flex; align-items:center; gap:14px; margin-bottom:16px;}
+  .gpa-ring{width:64px; height:64px; flex-shrink:0;}
+  .gpa-ring svg{transform:rotate(-90deg);}
+  .gpa-ring circle{fill:none; stroke-width:8;}
+  .gpa-bg{stroke:var(--track);}
+  .gpa-fg{stroke:var(--primary); stroke-linecap:round; transition:stroke-dashoffset 1.4s ease;}
+  .gpa-label{font-size:0.85rem;}
+  .gpa-label .pct{font-weight:800; font-family:'DM Sans',sans-serif; font-size:1.1rem;}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr; padding-top:140px;}
+    .hero-portrait{order:-1;}
+    .info-grid{grid-template-columns:1fr;}
+  }
+
+  /* ============ JOURNEY (roller coaster) ============ */
+  .journey{background:var(--surface-alt); position:relative; overflow:hidden;}
+  .journey-head{max-width:640px;}
+  .coaster-wrap{
+    position:relative; max-width:760px; margin:70px auto 0;
+  }
+  .coaster-wrap svg#track{width:100%; height:auto; display:block;}
+  #cart{transition:none;}
+  .stop{
+    position:absolute; width:280px; background:var(--surface);
+    border-radius:16px; padding:18px 20px; box-shadow:var(--shadow); border:1px solid var(--line);
+  }
+  .stop .tag{font-size:0.7rem; font-weight:800; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent-dark);}
+  .stop h4{font-size:1.02rem; margin-top:6px;}
+  .stop p{font-size:0.86rem; color:var(--ink-soft); margin:6px 0 0;}
+  .stop .when{font-size:0.75rem; color:var(--primary); font-weight:700; margin-top:8px; display:block;}
+
+  @media (max-width:760px){
+    .stop{position:static; width:auto; margin:0 auto 130px; max-width:320px;}
+    .coaster-wrap{max-width:340px;}
+  }
+
+  /* ============ SKILLS ============ */
+  .skills-grid{display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-top:50px;}
+  .skill-panel{background:var(--surface); border-radius:var(--radius); padding:30px; border:1px solid var(--line); box-shadow:var(--shadow);}
+  .skill-panel h3{font-size:1.1rem; margin-bottom:22px; display:flex; align-items:center; gap:10px;}
+  .skill-panel h3 i{color:var(--primary);}
+  .chip-grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:14px;}
+  .chip{
+    background:var(--surface-alt); border-radius:14px; padding:16px 10px; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:8px; transition:transform .18s;
+  }
+  .chip:hover{transform:translateY(-4px);}
+  .chip i, .chip .fa-stack{font-size:1.6rem; color:var(--primary);}
+  .chip span{font-size:0.78rem; font-weight:600; color:var(--ink);}
+  @media (max-width:760px){.skills-grid{grid-template-columns:1fr;}}
+
+  /* ---- custom SVG icon badges ---- */
+  .icon-badge{
+    width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; box-shadow:0 4px 10px -4px rgba(0,0,0,.25);
+  }
+  .icon-badge svg{width:24px; height:24px; display:block;}
+  .skill-panel h3 .icon-badge{width:34px; height:34px; border-radius:10px; box-shadow:none;}
+  .skill-panel h3 .icon-badge svg{width:19px; height:19px;}
+  .ib-java{background:linear-gradient(135deg,#f0a84a,#e5772a);}
+  .ib-dsa{background:linear-gradient(135deg,#8b7ff0,#6a5ae0);}
+  .ib-web{background:linear-gradient(135deg,#54c8f0,#2f9fd6);}
+  .ib-git{background:linear-gradient(135deg,#f4623a,#e04520);}
+  .ib-db{background:linear-gradient(135deg,#4fc3a1,#2ba382);}
+  .ib-sys{background:linear-gradient(135deg,#7aa6f0,#4a7de0);}
+  .ib-cloud{background:linear-gradient(135deg,#ffb454,#f79420);}
+  .ib-react{background:linear-gradient(135deg,#6fd6f0,#3fb8de);}
+  .ib-node{background:linear-gradient(135deg,#7fce6f,#4fae3d);}
+  .ib-python{background:linear-gradient(135deg,#f2d34a,#4b8bd6);}
+  .ib-speak{background:linear-gradient(135deg,#f28fb0,#e0577f);}
+  .ib-collab{background:linear-gradient(135deg,#7fd9c4,#3fb89e);}
+  .ib-team{background:linear-gradient(135deg,#a89bf5,#7c68e8);}
+  .ib-mentor{background:linear-gradient(135deg,#f5b969,#e88f2e);}
+  .ib-present{background:linear-gradient(135deg,#7ec8f2,#4a9fdb);}
+  .ib-care{background:linear-gradient(135deg,#f591a3,#e35b72);}
+  .ib-panel{background:linear-gradient(135deg,var(--primary),var(--accent-dark, var(--primary)));}
+  .ib-ctf{background:linear-gradient(135deg,#ef6f6f,#d94848);}
+  .ib-award{background:linear-gradient(135deg,#ffcc55,#eba526);}
+  .ib-code{background:linear-gradient(135deg,#8b7ff0,#6a5ae0);}
+  .ib-tt{background:linear-gradient(135deg,#f2a65a,#dd8b37);}
+  .ib-chess{background:linear-gradient(135deg,#6b7280,#4b5563);}
+  .ib-paint{background:linear-gradient(135deg,#7fd9a6,#3fb87f);}
+  .ib-cube{background:linear-gradient(135deg,#f2748f,#e0466c);}
+  .ib-soccer{background:linear-gradient(135deg,#5fbf7a,#3a9d58);}
+  .icon-badge svg *{fill:#fff;}
+  .icon-badge svg .stroke{stroke:#fff; fill:none;}
+  .cert-card .icon-badge, .interest-card .icon-badge{width:52px; height:52px; border-radius:16px; margin:0 auto 14px;}
+  .cert-card .icon-badge svg, .interest-card .icon-badge svg{width:26px; height:26px;}
+
+  /* ============ PROJECTS ============ */
+  .tabs{display:flex; gap:10px; margin:36px 0 26px;}
+  .tab-btn{
+    padding:10px 20px; border-radius:100px; border:1px solid var(--line); background:var(--surface);
+    font-weight:700; font-size:0.88rem; cursor:pointer; color:var(--ink-soft); transition:all .18s;
+  }
+  .tab-btn.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+  .hscroll{
+    display:flex; gap:22px; overflow-x:auto; padding:10px 4px 26px; scroll-snap-type:x mandatory;
+    -webkit-overflow-scrolling:touch;
+  }
+  .hscroll::-webkit-scrollbar{height:8px;}
+  .hscroll::-webkit-scrollbar-thumb{background:var(--track); border-radius:10px;}
+  .hscroll::-webkit-scrollbar-track{background:transparent;}
+  .proj-card{
+    scroll-snap-align:start; flex:0 0 340px; background:var(--surface); border-radius:var(--radius);
+    overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow);
+  }
+  .proj-media{
+    height:170px; background:linear-gradient(135deg,var(--primary-light),var(--track));
+    display:flex; align-items:center; justify-content:center; color:var(--primary); font-size:2.2rem;
+  }
+  /* Replace .proj-media background with your project screenshot: background-image:url(...) */
+  .proj-body{padding:20px 22px 24px;}
+  .proj-body h4{font-size:1.05rem;}
+  .proj-tags{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 12px;}
+  .proj-tags span{font-size:0.7rem; background:var(--surface-alt); color:var(--primary-dark); padding:4px 9px; border-radius:100px; font-weight:600;}
+  .proj-body p{font-size:0.87rem; color:var(--ink-soft); margin:0 0 16px;}
+  .proj-links{display:flex; gap:14px; flex-wrap:wrap;}
+  .proj-links a{font-size:0.8rem; font-weight:700; color:var(--primary); display:flex; align-items:center; gap:6px;}
+  .proj-links a:hover{color:var(--primary-dark);}
+  .scroll-hint{font-size:0.78rem; color:var(--ink-soft); display:flex; align-items:center; gap:8px; margin-top:-10px;}
+
+  /* ============ EXPERIENCE ============ */
+  .timeline{position:relative; margin-top:50px; padding-left:32px; border-left:2px solid var(--track);}
+  .tl-item{position:relative; padding-bottom:44px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:""; position:absolute; left:-39px; top:2px; width:16px; height:16px; border-radius:50%;
+    background:var(--primary); border:4px solid var(--surface-alt);
+  }
+  .tl-role{font-weight:700; font-size:1.05rem;}
+  .tl-org{color:var(--primary); font-weight:600; font-size:0.9rem; margin-top:2px;}
+  .tl-when{font-size:0.78rem; color:var(--ink-soft); margin-top:2px;}
+  .tl-item ul{margin:12px 0 0; padding-left:18px; color:var(--ink-soft); font-size:0.9rem;}
+  .tl-item li{margin-bottom:6px;}
+
+  /* ============ COMPETITIONS / CERTS ============ */
+  .cert-strip{display:flex; gap:18px; overflow-x:auto; padding:8px 4px 20px; scroll-snap-type:x mandatory;}
+  .cert-card{
+    scroll-snap-align:start; flex:0 0 240px; background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; padding:22px; box-shadow:var(--shadow);
+  }
+  .cert-card i{font-size:1.6rem; color:var(--accent-dark);}
+  .cert-card h4{font-size:0.95rem; margin-top:12px;}
+  .cert-card p{font-size:0.78rem; color:var(--ink-soft); margin:6px 0 14px;}
+  .cert-card a{font-size:0.78rem; font-weight:700; color:var(--primary);}
+
+  /* ============ INTERESTS ============ */
+  .interest-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:18px; margin-top:44px;}
+  .interest-card{background:var(--surface); border-radius:16px; padding:24px; border:1px solid var(--line); text-align:center;}
+  .interest-card i{font-size:1.7rem; color:var(--primary); margin-bottom:12px; display:block;}
+  .interest-card h4{font-size:0.95rem;}
+  .interest-card p{font-size:0.8rem; color:var(--ink-soft); margin-top:6px;}
+
+  /* ============ CONTACT / FOOTER ============ */
+  .contact-cta{background:var(--ink); color:#fff; border-radius:28px; padding:70px 50px; text-align:center; max-width:var(--maxw); margin:0 auto;}
+  .contact-cta h2{font-size:clamp(1.8rem,3.4vw,2.6rem); font-weight:800;}
+  .contact-cta p{color:#C9C4DE; max-width:480px; margin:16px auto 30px;}
+  .contact-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .contact-links a{
+    display:flex; align-items:center; gap:10px; background:rgba(255,255,255,0.08); padding:13px 22px;
+    border-radius:100px; font-weight:600; font-size:0.9rem; transition:background .18s;
+  }
+  .contact-links a:hover{background:var(--primary);}
+
+  footer{padding:40px 24px; text-align:center; color:var(--ink-soft); font-size:0.82rem;}
+  footer a{color:var(--ink); font-weight:600;}
+  footer a:hover{color:var(--primary);}
+
+  #topBtn{
+    position:fixed; bottom:26px; right:26px; width:46px; height:46px; border-radius:50%;
+    background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow); opacity:0; pointer-events:none; transition:opacity .25s, transform .25s; z-index:90; cursor:pointer; border:none;
+  }
+  #topBtn.show{opacity:1; pointer-events:auto;}
+  #topBtn:hover{transform:translateY(-3px);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#home" class="brand">Damz<span>.dev</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#journey">Journey</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#competitions">Competitions</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-outline">Let's talk</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="home" class="hero">
+  <div data-aos="fade-up">
+    <p class="hero-kicker">Software Development Student · Carlow, Ireland</p>
+    <h1>Hi, I'm Oyindamola —<br>I turn <em>curiosity</em> into code.</h1>
+    <p class="lead">3rd-year BSc Software Development student at SETU Carlow, AWS Certified Cloud Practitioner, and full-stack builder who loves shipping real, working products</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary"><i class="fa-solid fa-diagram-project"></i> View my work</a>
+      <a href="resume.pdf" class="btn btn-outline"><i class="fa-solid fa-file-arrow-down"></i> Download resume</a>
+      <!-- Add your resume.pdf file next to index.html, or replace the href with a hosted link -->
+    </div>
+    <div class="hero-meta">
+      <div class="item"><div class="num">3+</div><div class="lbl">Projects shipped</div></div>
+      <div class="item"><div class="num">AWS</div><div class="lbl">Certified Cloud Practitioner</div></div>
+      <div class="item"><div class="num">2</div><div class="lbl">Mentoring cohorts led</div></div>
+    </div>
+  </div>
+
+  <div class="hero-portrait" data-aos="fade-left" data-aos-delay="150">
+    <div class="avatar-ring">
+      <div class="avatar-inner">
+        <img src="bio-pic.png" alt="Oyindamola Olaosun" style="width:100%;height:100%;object-fit:cover;">
+        <!-- <span class="mono">OO</span> -->
+      </div>
+    </div>
+    <div class="float-badge fb1"><span class="icon-badge ib-java" style="width:26px;height:26px;border-radius:8px;box-shadow:none;"><svg viewBox="0 0 24 24" style="width:15px;height:15px;"><path d="M8 15.5c0 1.4 2 2.5 4.5 2.5s4.5-1.1 4.5-2.3c0-.8-.7-1.4-1.6-1.9.5.3.8.6.8 1 0 .8-1.6 1.4-3.6 1.4S8.4 15.6 8.4 14.8c0-.3.2-.6.6-.8-.7.4-1 .9-1 1.5Zm4.6-8c-1 1-2.5 1.9-1.1 3.6 1.7 2 .1 3.1-.5 3.5 1.4-.1 3.3-1 2.3-2.7C12.4 10.4 14.9 9.2 12.6 7.5ZM8.7 17.8c-1 .2-1.6.6-1.6 1 0 .8 2.3 1.6 5.1 1.6s5.1-.8 5.1-1.6c0-.4-.6-.8-1.6-1 .9.3 1.4.6 1.4 1 0 .7-2.2 1.3-5 1.3s-5-.6-5-1.3c0-.4.6-.7 1.6-1Z"/></svg></span> Java · OOSD</div>
+    <div class="float-badge fb2"><span class="icon-badge ib-cloud" style="width:26px;height:26px;border-radius:8px;box-shadow:none;"><svg viewBox="0 0 24 24" style="width:15px;height:15px;"><path d="M7 17a4 4 0 0 1-.6-7.95A5 5 0 0 1 16 8.1 4.5 4.5 0 0 1 17.5 17H7Z"/></svg></span> AWS Certified</div>
+  </div>
+</section>
+
+<div class="hero-lower" data-aos="fade-up">
+  <div class="info-grid">
+    <div class="card">
+      <div class="gpa-title" style="margin-bottom:10px;">Education</div>
+      <div class="edu-row">
+        <div>
+          <div class="school">South East Technological University (SETU)</div>
+          <div class="deg">B.S. (Honours) Software Development · Carlow, Ireland</div>
+        </div>
+        <div class="when">Sep 2024 — Present</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="school">Aptech Learning</div>
+          <div class="deg">Diploma in Information Systems Management · Lagos, Nigeria</div>
+        </div>
+        <div class="when">Sep 2023 — Aug 2024</div>
+      </div>
+      <div class="edu-row">
+        <div>
+          <div class="school">Apostolic Faith Secondary School</div>
+          <div class="deg">West African Secondary School Certificate, GPA: 6A · Lagos, Nigeria</div>
+        </div>
+        <div class="when">Sep 2017 — Aug 2023</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="gpa-title">GPA Summary</div>
+      <div class="gpa-row">
+        <div class="gpa-ring">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle class="gpa-bg" cx="32" cy="32" r="26"/>
+            <circle class="gpa-fg" cx="32" cy="32" r="26" stroke-dasharray="163.4" stroke-dashoffset="163.4" data-pct="91.58"/>
+          </svg>
+        </div>
+        <div class="gpa-label">Year 1<br><span class="pct">91.58%</span></div>
+      </div>
+      <div class="gpa-row" style="margin-bottom:0;">
+        <div class="gpa-ring">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle class="gpa-bg" cx="32" cy="32" r="26"/>
+            <circle class="gpa-fg" cx="32" cy="32" r="26" stroke-dasharray="163.4" stroke-dashoffset="163.4" data-pct="84.33"/>
+          </svg>
+        </div>
+        <div class="gpa-label">Year 2<br><span class="pct">84.33%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ JOURNEY (roller coaster) ============ -->
+<section id="journey" class="journey">
+  <div class="wrap">
+    <div class="journey-head" data-aos="fade-up">
+      <p class="eyebrow">Learning journey</p>
+      <h2 class="section-title">From nervous newbie to full-stack builder</h2>
+      <p class="section-sub">Every good developer's path has hills and dips. Here's mine — ride along.</p>
+    </div>
+
+    <div class="coaster-wrap">
+      <svg id="track" viewBox="0 0 320 1500" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="railPath" d="M160,60 C260,140 260,260 160,340 C60,420 60,540 160,620 C260,700 260,820 160,900 C60,980 60,1100 160,1180 C230,1230 230,1330 160,1400"
+              stroke="#D8D2F1" stroke-width="14" stroke-linecap="round"/>
+        <path d="M160,60 C260,140 260,260 160,340 C60,420 60,540 160,620 C260,700 260,820 160,900 C60,980 60,1100 160,1180 C230,1230 230,1330 160,1400"
+              stroke="var(--primary)" stroke-width="4" stroke-dasharray="2 14" stroke-linecap="round"/>
+        <g id="cart">
+          <circle r="13" fill="var(--accent)" stroke="#fff" stroke-width="3"/>
+          <circle r="4" fill="#fff"/>
+        </g>
+      </svg>
+
+  
+      <div class="stop" style="top:1150px; left:0;" data-aos="fade-right">
+        <span class="tag">Stop 5 · Present day</span>
+        <h4>Competing, certifying, growing</h4>
+        <p>AWS Certified Cloud Practitioner, HackerRank certified, competing in the ZeroDays competition — still climbing.</p>
+        <span class="when">2026</span>
+      </div>
+
+
+      <div class="stop" style="top:850px; right:0;" data-aos="fade-left">
+        <span class="tag">Stop 4 · Building speed</span>
+        <h4>Personal projects + Peer Mentor</h4>
+        <p>Shipped the Event Attendance Register and SoccerVerse, and started mentoring first-year students at SETU.</p>
+        <span class="when">2025</span>
+      </div>
+
+
+          <div class="stop" style="top:570px; left:0;" data-aos="fade-right">
+        <span class="tag">Stop 3 · The big climb</span>
+        <h4>BSc Software Development, SETU Carlow</h4>
+        <p>Moved to Ireland and started from the fundamentals again — Java, DSA, OOSD, databases, systems analysis.</p>
+        <span class="when">Sep 2024 — Present</span>
+      </div>
+
+          <div class="stop" style="top:290px; right:0;" data-aos="fade-left">
+        <span class="tag">Stop 2 · First loop</span>
+        <h4>Frontend Developer Intern, STACKIVY</h4>
+        <p>Rebuilt a landing page in HTML/CSS — first taste of shipping something real, flexbox finally clicked.</p>
+        <span class="when">May 2024 — Aug 2024</span>
+      </div>
+
+      <div class="stop" style="top:10px; left:0;" data-aos="fade-right">
+        <span class="tag">Stop 1 · Newbie</span>
+        <h4>First lines of code</h4>
+        <p>Started the Diploma in Information Systems Management at AptechLearning, Lagos — total beginner, big curiosity.</p>
+        <span class="when">Sep 2023</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills">
+  <div class="wrap">
+    <p class="eyebrow" data-aos="fade-up">Skills</p>
+    <h2 class="section-title" data-aos="fade-up">What I build with</h2>
+    <p class="section-sub" data-aos="fade-up">A mix of technical depth and the soft skills that make teams actually work.</p>
+
+    <div class="skills-grid">
+      <div class="skill-panel" data-aos="fade-up">
+        <h3><span class="icon-badge ib-panel"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm0 2v8h16V7H4Zm-1 12h18v1a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-1Z"/></svg></span> Technical skills</h3>
+        <div class="chip-grid">
+          <div class="chip"><span class="icon-badge ib-java"><svg viewBox="0 0 24 24"><path d="M8 15.5c0 1.4 2 2.5 4.5 2.5s4.5-1.1 4.5-2.3c0-.8-.7-1.4-1.6-1.9.5.3.8.6.8 1 0 .8-1.6 1.4-3.6 1.4S8.4 15.6 8.4 14.8c0-.3.2-.6.6-.8-.7.4-1 .9-1 1.5Zm4.6-8c-1 1-2.5 1.9-1.1 3.6 1.7 2 .1 3.1-.5 3.5 1.4-.1 3.3-1 2.3-2.7C12.4 10.4 14.9 9.2 12.6 7.5ZM8.7 17.8c-1 .2-1.6.6-1.6 1 0 .8 2.3 1.6 5.1 1.6s5.1-.8 5.1-1.6c0-.4-.6-.8-1.6-1 .9.3 1.4.6 1.4 1 0 .7-2.2 1.3-5 1.3s-5-.6-5-1.3c0-.4.6-.7 1.6-1Z"/></svg></span><span>Java &amp; OOSD</span></div>
+          <div class="chip"><span class="icon-badge ib-dsa"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="12" cy="18" r="2.4"/><path class="stroke" d="M7.8 7.3 10.4 16M16.2 7.3 13.6 16M8 6h8" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>DSA</span></div>
+          <div class="chip"><span class="icon-badge ib-web"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" class="stroke" stroke-width="1.6"/><path class="stroke" d="M3 9h18" stroke-width="1.6"/><circle cx="6" cy="7" r="0.6" fill="#fff"/><path d="m8 13 2.2 2.2L8 17.4M13 17.4h3" class="stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Web Dev</span></div>
+          <div class="chip"><span class="icon-badge ib-git"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="12" r="2"/><path class="stroke" d="M6 8v8M6 8c0 4 5 4 9 4" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Git</span></div>
+          <div class="chip"><span class="icon-badge ib-db"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.4"/><path class="stroke" d="M5 6v12c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4V6" stroke-width="1.6"/><path class="stroke" d="M5 12c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4" stroke-width="1.6"/></svg></span><span>DBMS</span></div>
+          <div class="chip"><span class="icon-badge ib-sys"><svg viewBox="0 0 24 24"><circle cx="10" cy="10" r="6" class="stroke" stroke-width="1.8"/><path class="stroke" d="M18.5 18.5 14.6 14.6M7 10h6M10 7v6" stroke-width="1.8" stroke-linecap="round"/></svg></span><span>Systems Analysis &amp; Testing</span></div>
+          <div class="chip"><span class="icon-badge ib-cloud"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.6-7.95A5 5 0 0 1 16 8.1 4.5 4.5 0 0 1 17.5 17H7Z"/></svg></span><span>Cloud (AWS)</span></div>
+          <div class="chip"><span class="icon-badge ib-react"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.1"/><ellipse cx="12" cy="12" rx="9" ry="3.6" class="stroke" stroke-width="1.4"/><ellipse cx="12" cy="12" rx="9" ry="3.6" class="stroke" stroke-width="1.4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="3.6" class="stroke" stroke-width="1.4" transform="rotate(120 12 12)"/></svg></span><span>React</span></div>
+          <div class="chip"><span class="icon-badge ib-node"><svg viewBox="0 0 24 24"><path d="M12 2 4 6.5v11L12 22l8-4.5v-11L12 2Zm0 2.3 5.8 3.3v6.8L12 17.7l-5.8-3.3V7.6L12 4.3Z"/><path d="M12 8.5v7l3.4-2v-3l-3.4-2Z"/></svg></span><span>Node.js</span></div>
+          <div class="chip"><span class="icon-badge ib-python"><svg viewBox="0 0 24 24"><path d="M11.9 2c-4.4 0-4.1 1.9-4.1 1.9v2h4.2v.6H6.1S3 6.1 3 10.6s2.7 4.3 2.7 4.3h1.6v-2.2s-.1-2.7 2.6-2.7h4.1s2.5 0 2.5-2.4V4.4S17 2 11.9 2Zm-2.3 1.3c.4 0 .8.3.8.8s-.4.8-.8.8-.8-.3-.8-.8.4-.8.8-.8Z"/><path d="M12.1 22c4.4 0 4.1-1.9 4.1-1.9v-2h-4.2v-.6h5.9s3.1-.1 3.1-4.6-2.7-4.3-2.7-4.3h-1.6v2.2s.1 2.7-2.6 2.7h-4.1s-2.5 0-2.5 2.4v4.2S7 22 12.1 22Zm2.3-1.3c-.4 0-.8-.3-.8-.8s.4-.8.8-.8.8.3.8.8-.4.8-.8.8Z"/></svg></span><span>Python</span></div>
+        </div>
+      </div>
+
+      <div class="skill-panel" data-aos="fade-up" data-aos-delay="100">
+        <h3><span class="icon-badge ib-panel"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.6"/><circle cx="17" cy="9" r="2.2"/><path class="stroke" d="M3.5 19c0-3 2-4.8 4.5-4.8s4.5 1.8 4.5 4.8M14 19c0-2.3 1.5-3.7 3.5-3.7s3.5 1.4 3.5 3.7" stroke-width="1.6" stroke-linecap="round"/></svg></span> Soft skills</h3>
+        <div class="chip-grid">
+          <div class="chip"><span class="icon-badge ib-speak"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="10" rx="3"/><path class="stroke" d="M6 11c0 3.3 2.7 6 6 6s6-2.7 6-6M12 17v3m-3 0h6" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Public Speaking</span></div>
+          <div class="chip"><span class="icon-badge ib-collab"><svg viewBox="0 0 24 24"><path d="M2 12.5 6.5 8l3 3-2 2 2 2-3 3L2 12.5Z"/><path d="M22 12.5 17.5 8l-3 3 2 2-2 2 3 3 4.5-5.5Z"/></svg></span><span>Collaboration</span></div>
+          <div class="chip"><span class="icon-badge ib-team"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.4"/><circle cx="16" cy="8" r="2.4"/><path class="stroke" d="M3 19c0-3 2.2-4.8 5-4.8s5 1.8 5 4.8M11 19c0-3 2.2-4.8 5-4.8s5 1.8 5 4.8" stroke-width="1.6" stroke-linecap="round"/></svg></span><span>Teamwork</span></div>
+          <div class="chip"><span class="icon-badge ib-mentor"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5" class="stroke" stroke-width="1.6"/><path class="stroke" d="M7 9h10M7 12h6" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="20" r="2"/></svg></span><span>Mentoring</span></div>
+          <div class="chip"><span class="icon-badge ib-present"><svg viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" class="stroke" stroke-width="1.6"/><path class="stroke" d="M9 20h6m-3-3v3M7 12l3-3 2.5 2.5L17 7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Presentation</span></div>
+          <div class="chip"><span class="icon-badge ib-care"><svg viewBox="0 0 24 24"><path d="M12 20.5s-7.5-4.4-7.5-9.8A4.2 4.2 0 0 1 12 8a4.2 4.2 0 0 1 7.5 2.7c0 5.4-7.5 9.8-7.5 9.8Z"/></svg></span><span>Customer Care</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects" style="background:var(--surface-alt);">
+  <div class="wrap">
+    <p class="eyebrow" data-aos="fade-up">Projects</p>
+    <h2 class="section-title" data-aos="fade-up">School work meets personal builds</h2>
+    <p class="section-sub" data-aos="fade-up">Scroll sideways through each card — screenshots, certificates, presentation videos, and Figma files live here.</p>
+
+    <div class="tabs" data-aos="fade-up">
+      <button class="tab-btn active" data-tab="school">🏫 School projects</button>
+      <button class="tab-btn" data-tab="personal">💡 Personal projects</button>
+    </div>
+
+    <p class="scroll-hint" data-aos="fade-up"><i class="fa-solid fa-arrows-left-right"></i> Drag or scroll horizontally</p>
+
+    <!-- SCHOOL PROJECTS -->
+    <div class="hscroll" data-panel="school" data-aos="fade-up">
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-hospital"></i></div>
+        <!-- Replace .proj-media with a screenshot: style="background-image:url('hms-screenshot.jpg')" -->
+        <div class="proj-body">
+          <h4>Hospital Management System</h4>
+          <div class="proj-tags"><span>Java</span><span>OOSD</span><span>CRUD</span></div>
+          <p>A digital solution to manage patient and practitioner data, handle appointment booking, and administer prescriptions — built with object-oriented design principles.</p>
+          <div class="proj-links">
+            <a href="https://github.com/damzG/Hospital_Management_System"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="report.pdf"><i class="fa-solid fa-file-pdf"></i> Report (PDF)</a>
+            <!-- <a href="#"><i class="fa-solid fa-video"></i> Demo video</a> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-atom"></i></div>
+        <!-- Replace .proj-media with a screenshot: style="background-image:url('hms-screenshot.jpg')" -->
+        <div class="proj-body">
+          <h4>Milo Maze</h4>
+          <div class="proj-tags"><span>x68</span><span>Assembly Language</span><span>Game Development</span></div>
+          <p>A 68K Assembly Game for the adventurous goal seekers Inspired by Milo Murphy's Law. Built using memory management techniques and subroutines</p>
+          <div class="proj-links">
+            <a href="https://github.com/damzG/Milo-Maze"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="milo video.mp4"><i class="fa-solid fa-video"></i> Demo video</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-swatchbook"></i></div>
+        <div class="proj-body">
+          <h4>Module Coursework — Design Portfolio</h4>
+          <div class="proj-tags"><span>UI/UX</span><span>Figma</span></div>
+          <p>Add your SETU coursework, group projects, or coding-competition submissions here — link out to write-ups and Figma boards.</p>
+          <div class="proj-links">
+            <a href="#"><i class="fa-brands fa-figma"></i> Figma</a>
+            <a href="#"><i class="fa-solid fa-file-pdf"></i> Certificate</a>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+    <!-- PERSONAL PROJECTS -->
+    <div class="hscroll" data-panel="personal" style="display:none;" data-aos="fade-up">
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-clipboard-check"></i></div>
+        <div class="proj-body">
+          <h4>Event Attendance Register</h4>
+          <div class="proj-tags"><span>Node.js</span><span>MongoDB Atlas</span><span>Tailwind CSS</span></div>
+          <p>Responsive event registration app that let 50+ guests register seamlessly, with token-based admin login and real-time CSV export. Deployed on Render.</p>
+          <div class="proj-links">
+            <a href="https://party-register.onrender.com/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live site</a>
+            <a href="https://github.com/damzG/Party-Register"><i class="fa-brands fa-github"></i> GitHub</a>
+            <!-- <a href="#"><i class="fa-solid fa-video"></i> Walkthrough</a> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-futbol"></i></div>
+        <div class="proj-body">
+          <h4>SoccerVerse — FIFA World Cup 2026</h4>
+          <div class="proj-tags"><span>React</span><span>Node.js</span><span>MongoDB</span></div>
+          <p>Full-stack fan site with a secure contact-message system, RESTful APIs, and a responsive Tailwind UI. Deployed on Render.</p>
+          <div class="proj-links">
+            <a href="https://soccerversefrontend.netlify.app/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live site</a>
+            <a href="https://github.com/damzG/soccerverse-frontend"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://www.figma.com/design/HxlTa9p3gCfN1eDZKyz76C/SoccerVerse---FIFA-World-Cup-2026?node-id=0-1&t=Zq5NAkuVGXkK7GNR-1"><i class="fa-brands fa-figma"></i> Figma</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-school"></i></div>
+        <div class="proj-body">
+          <h4>Tutor-e  E-Learning Platform</h4>
+          <div class="proj-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+          <p>A personalized webite for a private tutoring business helping secondary students to pass their final exams</p>
+          <div class="proj-links">
+            <a href="https://damzg.github.io/Tutor-e/"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live site</a>
+            <a href="https://github.com/damzG/Tutor-e"><i class="fa-brands fa-github"></i> GitHub</a>
+          </div>
+        </div>
+      </div> 
+      
+      <div class="proj-card">
+        <div class="proj-media"><i class="fa-solid fa-bank"></i></div>
+        <div class="proj-body">
+          <h4>AI Banking Agent</h4>
+          <div class="proj-tags"><span>AI</span><span>Copilot Studio</span><span>Agentic Worflows</span></div>
+          <p>An AI Chatbot tailored to help new banking customers with commercial activities with privacy conditions</p>
+          <div class="proj-links">
+            <a href="https://copilotstudio.microsoft.com/environments/47fec8ee-382d-e2bf-affc-551ce7afcba3/agents"><i class="fa-solid fa-arrow-up-right-from-square"></i> Live site</a>
+            <a href="AI Banking Agent.mp4"><i class="fa-solid fa-video"></i> Demo video</a>
+
+          </div>
+        </div>
+      </div> 
+      
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience">
+  <div class="wrap">
+    <p class="eyebrow" data-aos="fade-up">Experience</p>
+    <h2 class="section-title" data-aos="fade-up">Where I've worked and helped out</h2>
+
+    <div class="timeline" data-aos="fade-up">
+      <div class="tl-item">
+        <div class="tl-role">Peer Mentor (Volunteer)</div>
+        <div class="tl-org">South East Technological University, Carlow</div>
+        <div class="tl-when">Sep 2025 — Present</div>
+        <ul>
+          <li>Support first-year students with academic guidance and wellbeing, boosting their confidence and integration into college life.</li>
+          <li>Organise mentoring sessions and group activities that improve student engagement and study habits.</li>
+          <li>Collaborate with faculty and student services to identify and support mentees who need extra help.</li>
+          <li>Received a Peer Mentor Recognition Award after a year of service.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Frontend Developer Intern</div>
+        <div class="tl-org">STACKIVY, Lagos, Nigeria</div>
+        <div class="tl-when">May 2024 — Aug 2024</div>
+        <ul>
+          <li>Built a responsive landing-page layout in HTML and CSS as part of a full redesign.</li>
+          <li>Sharpened flexbox skills and mobile-friendly design speed on a live client project.</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-role">Sales Assistant</div>
+        <div class="tl-org">Smartiemart, Nigeria</div>
+        <div class="tl-when">2021 — 2022</div>
+        <!-- Dates as listed on resume were slightly inconsistent — double-check before publishing -->
+        <ul>
+          <li>Delivered friendly customer service, helping shoppers with queries, recommendations, and transactions.</li>
+          <li>Processed payments accurately via POS in a high-volume environment.</li>
+          <li>Collaborated with the team on inventory management and seasonal promotions.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPETITIONS / CERTS ============ -->
+<section id="competitions" style="background:var(--surface-alt);">
+  <div class="wrap">
+    <p class="eyebrow" data-aos="fade-up">Competitions &amp; certifications</p>
+    <h2 class="section-title" data-aos="fade-up">Putting skills to the test</h2>
+    <p class="section-sub" data-aos="fade-up">Coding competitions, CTFs, and certifications — tap a card to view the certificate.</p>
+
+    <div class="cert-strip" data-aos="fade-up">
+      <div class="cert-card">
+        <span class="icon-badge ib-cloud"><svg viewBox="0 0 24 24"><path d="M7 17a4 4 0 0 1-.6-7.95A5 5 0 0 1 16 8.1 4.5 4.5 0 0 1 17.5 17H7Z"/></svg></span>
+        <h4>AWS Certified Cloud Practitioner</h4>
+        <p>Foundational certification in AWS cloud concepts, services, and security.</p>
+        <a href="AWS Certified Cloud Practitioner certificate.pdf"><i class="fa-solid fa-file-pdf"></i> View certificate</a>
+      </div>
+      <div class="cert-card">
+        <span class="icon-badge ib-ctf"><svg viewBox="0 0 24 24"><path d="M6 3v18" class="stroke" stroke-width="1.8" stroke-linecap="round"/><path d="M6 4h11l-2.5 3L17 10H6V4Z"/></svg></span>
+        <h4>ZeroDays Competition</h4>
+        <p>Competed in the ZeroDays coding/security competition, March 2026.</p>
+        <a href="https://www.linkedin.com/in/oyindamolaolaosun/details/certifications/"><i class="fa-solid fa-file-pdf"></i> View details</a>
+      </div>
+      <div class="cert-card">
+        <span class="icon-badge ib-db"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.4"/><path class="stroke" d="M5 6v12c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4V6" stroke-width="1.6"/><path class="stroke" d="M5 12c0 1.3 3.1 2.4 7 2.4s7-1.1 7-2.4" stroke-width="1.6"/></svg></span>
+        <h4>HackerRank SQL Certified</h4>
+        <p>Intermediate-level SQL certification covering joins, aggregation, and querying.</p>
+        <a href="https://www.linkedin.com/in/oyindamolaolaosun/details/certifications/"><i class="fa-solid fa-file-pdf"></i> View certificate</a>
+      </div>
+      <div class="cert-card">
+        <span class="icon-badge ib-code"><svg viewBox="0 0 24 24"><path d="m9 8-4 4 4 4M15 8l4 4-4 4" class="stroke" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <h4>30 Days of Code</h4>
+        <p>Completed HackerRank's 30-day coding challenge across core programming concepts.</p>
+        <a href="https://www.linkedin.com/in/oyindamolaolaosun/details/certifications/"><i class="fa-solid fa-file-pdf"></i> View certificate</a>
+      </div>
+      <div class="cert-card">
+        <span class="icon-badge ib-award"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="m8.5 13.5-1.8 6L12 17l5.3 2.5-1.8-6" class="stroke" stroke-width="1.6" stroke-linejoin="round"/></svg></span>
+        <h4>Peer Mentor Recognition Award</h4>
+        <p>Awarded for a year of mentoring first-year students at SETU Carlow.</p>
+        <a href="https://www.linkedin.com/in/oyindamolaolaosun/details/certifications/"><i class="fa-solid fa-file-pdf"></i> View certificate</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INTERESTS ============ -->
+<section id="interests">
+  <div class="wrap">
+    <p class="eyebrow" data-aos="fade-up">Beyond the screen</p>
+    <h2 class="section-title" data-aos="fade-up">Interests &amp; activities</h2>
+
+    <div class="interest-grid" data-aos="fade-up">
+      <div class="interest-card"><span class="icon-badge ib-tt"><svg viewBox="0 0 24 24"><circle cx="9" cy="9" r="5" class="stroke" stroke-width="1.6"/><path d="m13 13 6 6" class="stroke" stroke-width="1.8" stroke-linecap="round"/><circle cx="18.5" cy="18.5" r="1.6"/></svg></span><h4>Table Tennis</h4><p>Weekly class every Thursday.</p></div>
+      <div class="interest-card"><span class="icon-badge ib-chess"><svg viewBox="0 0 24 24"><path d="M12 3c-1 1-1.4 2-.6 2.8.8.8-.3 1.6-1 2.4-.7.8-.6 2 .6 2.3-1.6.5-2.2 1.7-2.2 3H15c0-1.3-.6-2.5-2.2-3 1.2-.3 1.3-1.5.6-2.3-.7-.8-1.8-1.6-1-2.4C13.2 5 12.8 4 12 3Z"/><path class="stroke" d="M7 21c0-2.5 1-3.5 1.6-4h6.8c.6.5 1.6 1.5 1.6 4H7Z" stroke-width="1.6" stroke-linejoin="round"/></svg></span><h4>Chess</h4><p>Online matches on Chess.com &amp; ChessCon.</p></div>
+      <div class="interest-card"><span class="icon-badge ib-paint"><svg viewBox="0 0 24 24"><path d="M6 18c-1.5 0-2.5-1-2.5-2.5S5 13 6 12l9-9 4 4-9 9c-1 1-2.5 2.5-4 2.5Z" class="stroke" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 5.5 18 9.5" class="stroke" stroke-width="1.5"/></svg></span><h4>Nature Drawings</h4><p>Wildlife artwork with drawing guides.</p></div>
+      <div class="interest-card"><span class="icon-badge ib-cube"><svg viewBox="0 0 24 24"><path d="M12 2 20 6.5v11L12 22l-8-4.5v-11L12 2Z" class="stroke" stroke-width="1.4" stroke-linejoin="round"/><path d="M12 2v20M4 6.5 12 11l8-4.5M4 17.5 12 13l8 4.5" class="stroke" stroke-width="1.2" stroke-linejoin="round"/></svg></span><h4>Rubik's Cube</h4><p>Solving for speed and focus.</p></div>
+      <div class="interest-card"><span class="icon-badge ib-soccer"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" class="stroke" stroke-width="1.4"/><path d="M12 7.5 15.5 10l-1.3 4h-4.4L8.5 10 12 7.5ZM12 3v4.5M4.5 9l3-.5M4.5 15l3 .8M19.5 9l-3-.5M19.5 15l-3 .8M9 20.5l1-3.5M15 20.5l-1-3.5" class="stroke" stroke-width="1.1" stroke-linecap="round"/></svg></span><h4>Soccer Commentary</h4><p>Calling matches for fun.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact-cta" data-aos="zoom-in">
+    <h2>Let's build something together.</h2>
+    <p>Open to internships, grad roles, and collaborative projects. I reply fast — reach out below.</p>
+    <div class="contact-links">
+      <a href="mailto:oyindamolaolaosun8@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      <a href="https://github.com/damzG" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://www.linkedin.com/in/oyindamolaolaosun/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Oyindamola Olaosun ·
+  <a href="https://github.com/damzG" target="_blank" rel="noopener">GitHub</a> ·
+  <a href="https://www.linkedin.com/in/oyindamolaolaosun/" target="_blank" rel="noopener">LinkedIn</a> ·
+  <a href="mailto:oyindamolaolaosun8@gmail.com">Email</a> · All rights reserved.
+</footer>
+
+<button id="topBtn" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({ duration: 700, once: true, offset: 60, easing: 'ease-out-cubic' });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // Back to top button
+  const topBtn = document.getElementById('topBtn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 500);
+  });
+  topBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // GPA rings — animate stroke-dashoffset based on data-pct
+  document.querySelectorAll('.gpa-fg').forEach(circle => {
+    const pct = parseFloat(circle.dataset.pct);
+    const circumference = 163.4;
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          circle.style.strokeDashoffset = circumference - (circumference * pct / 100);
+          observer.unobserve(circle);
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(circle);
+  });
+
+  // Project tabs
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      document.querySelectorAll('.hscroll').forEach(panel => {
+        panel.style.display = panel.dataset.panel === tab ? 'flex' : 'none';
+      });
+    });
+  });
+
+  // Roller coaster cart — moves along the SVG path based on scroll progress through the journey section
+  const railPath = document.getElementById('railPath');
+  const cart = document.getElementById('cart');
+  const journeySection = document.getElementById('journey');
+  const pathLength = railPath.getTotalLength();
+
+  function updateCart() {
+    const rect = journeySection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const total = rect.height - vh;
+    let progress = total > 0 ? (-rect.top) / total : 0;
+    progress = Math.max(0, Math.min(1, progress));
+    const point = railPath.getPointAtLength(progress * pathLength);
+    cart.setAttribute('transform', `translate(${point.x}, ${point.y})`);
+  }
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => { updateCart(); ticking = false; });
+      ticking = true;
+    }
+  });
+  window.addEventListener('resize', updateCart);
+  updateCart();
+</script>
+</body>
+</html>
